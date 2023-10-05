@@ -1,0 +1,298 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Notebook API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/api/v1/notebook": {
+            "get": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Список постов",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "full_name": {
+                                                        "type": "string",
+                                                        "example": "Tests 1"
+                                                    },
+                                                    "company": {
+                                                        "type": "string",
+                                                        "example": "Some company"
+                                                    },
+                                                    "phone_number": {
+                                                        "type": "string",
+                                                        "example": "88998899988"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "mail@mail.ru"
+                                                    },
+                                                    "birth_date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2023-10-07"
+                                                    },
+                                                    "image_url": {
+                                                        "type": "string",
+                                                        "example": "/storage/images/5428e1c13ffdf5bca95141ecc01407f1.png"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Создание записи",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "full_name": {
+                                                "type": "string",
+                                                "example": "Some full name"
+                                            },
+                                            "company": {
+                                                "type": "string",
+                                                "example": "Some company"
+                                            },
+                                            "phone_number": {
+                                                "type": "string",
+                                                "example": "Some phone number"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "Mail@gmail.com"
+                                            },
+                                            "birth_date": {
+                                                "type": "string",
+                                                "example": "2023-10-07"
+                                            },
+                                            "image_url": {
+                                                "type": "string",
+                                                "example": " "
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/notebook/{id}": {
+            "get": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Чтение записи",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id записи",
+                        "required": true,
+                        "example": 3
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "full_name": {
+                                                    "type": "string",
+                                                    "example": "Tests 1"
+                                                },
+                                                "company": {
+                                                    "type": "string",
+                                                    "example": "Some company"
+                                                },
+                                                "phone_number": {
+                                                    "type": "string",
+                                                    "example": "88998899988"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "mail@mail.ru"
+                                                },
+                                                "birth_date": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2023-10-07"
+                                                },
+                                                "image_url": {
+                                                    "type": "string",
+                                                    "example": "/storage/images/5428e1c13ffdf5bca95141ecc01407f1.png"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Удаление записи",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id записи",
+                        "required": true,
+                        "example": 3
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "done"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Обновление записи",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id записи",
+                        "required": true,
+                        "example": 3
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "full_name": {
+                                                "type": "string",
+                                                "example": "Some full name"
+                                            },
+                                            "company": {
+                                                "type": "string",
+                                                "example": "Some company"
+                                            },
+                                            "phone_number": {
+                                                "type": "string",
+                                                "example": "Some phone number"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "Mail@gmail.com"
+                                            },
+                                            "birth_date": {
+                                                "type": "string",
+                                                "example": "2023-10-07"
+                                            },
+                                            "image_url": {
+                                                "type": "string",
+                                                "example": " "
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
